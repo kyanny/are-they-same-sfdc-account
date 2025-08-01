@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <h1>SFDC Account Checker</h1>
-    <p>URLを入力してSalesforceアカウントIDが同じかどうかを確認します</p>
+    <p>Enter URLs to check if Salesforce account IDs are the same</p>
     
     <div class="form-container">
       <textarea
         v-model="urlsInput"
-        placeholder="複数のSalesforce URLを改行で区切って入力してください"
+        placeholder="Enter multiple Salesforce URLs separated by line breaks"
         rows="8"
         cols="80"
       ></textarea>
@@ -62,7 +62,7 @@ export default {
       
       // URLが入力されていない場合
       if (!urlsInput.value.trim()) {
-        message.value = 'URLを入力してください'
+        message.value = 'Please enter URLs'
         messageClass.value = 'error'
         return
       }
@@ -91,17 +91,17 @@ export default {
       
       // 結果を表示
       if (ids.size === 0) {
-        message.value = 'アカウントIDが見つかりませんでした'
+        message.value = 'No account IDs found'
         messageClass.value = 'error'
       } else if (ids.size === 1) {
         const accountId = Array.from(ids)[0]
         const searchUrl = `https://github.com/search?q=user%3Agithub+%22${accountId}%22&type=issues&ref=advsearch`
-        message.value = `They are same SFDC accounts! Account ID: <code>${accountId}</code><button class="copy-btn" onclick="window.copyAccountId('${accountId}')">📋</button><a href="${searchUrl}" target="_blank">🔗</a>`
+        message.value = `They are same SFDC accounts! Account ID: <code>${accountId}</code><span class="tooltip-container"><button class="copy-btn" onclick="window.copyAccountId('${accountId}')">📋</button><span class="tooltip">Copy to clipboard</span></span><span class="tooltip-container"><a href="${searchUrl}" target="_blank">🔗</a><span class="tooltip">Search on GitHub</span></span>`
         messageClass.value = 'success'
       } else {
         const accountIds = Array.from(ids).map(id => {
           const searchUrl = `https://github.com/search?q=user%3Agithub+%22${id}%22&type=issues&ref=advsearch`
-          return `<code>${id}</code><button class="copy-btn" onclick="window.copyAccountId('${id}')">📋</button><a href="${searchUrl}" target="_blank">🔗</a>`
+          return `<code>${id}</code><span class="tooltip-container"><button class="copy-btn" onclick="window.copyAccountId('${id}')">📋</button><span class="tooltip">Copy to clipboard</span></span><span class="tooltip-container"><a href="${searchUrl}" target="_blank">🔗</a><span class="tooltip">Search on GitHub</span></span>`
         }).join(', ')
         message.value = `They are different SFDC accounts! Account IDs: ${accountIds}`
         messageClass.value = 'warning'
@@ -292,6 +292,46 @@ button {
   20% { opacity: 1; transform: translateY(0); }
   80% { opacity: 1; transform: translateY(0); }
   100% { opacity: 0; transform: translateY(-10px); }
+}
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  font-size: 12px;
+  font-weight: normal;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 @media (max-width: 768px) {

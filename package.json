@@ -1,7 +1,7 @@
 {
-  "name": "are-they-same-account",
+  "name": "are-they-same-sfdc-account",
   "version": "1.0.0",
-  "description": "Vue.js minimal project",
+  "description": "SFDC Account Checker - Check if Salesforce account IDs are the same",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
