@@ -97,12 +97,12 @@ export default {
         messageClass.value = 'error'
       } else if (ids.size === 1) {
         const accountId = Array.from(ids)[0]
-        const searchUrl = `https://github.com/search?q=user%3Agithub+%22${accountId}%22&type=issues&ref=advsearch`
+        const searchUrl = `https://github.com/search?q=%22${accountId}%22&type=issues&ref=advsearch`
         message.value = `They are same SFDC accounts! Account ID: <code>${accountId}</code><span class="tooltip-container"><button class="copy-btn" onclick="window.copyAccountId('${accountId}')">📋</button><span class="tooltip">Copy to clipboard</span></span><span class="tooltip-container"><a href="${searchUrl}" target="_blank">🔗</a><span class="tooltip">Search on GitHub</span></span>`
         messageClass.value = 'success'
       } else {
         const accountIds = Array.from(ids).map(id => {
-          const searchUrl = `https://github.com/search?q=user%3Agithub+%22${id}%22&type=issues&ref=advsearch`
+          const searchUrl = `https://github.com/search?q=%22${id}%22&type=issues&ref=advsearch`
           return `<code>${id}</code><span class="tooltip-container"><button class="copy-btn" onclick="window.copyAccountId('${id}')">📋</button><span class="tooltip">Copy to clipboard</span></span><span class="tooltip-container"><a href="${searchUrl}" target="_blank">🔗</a><span class="tooltip">Search on GitHub</span></span>`
         }).join(', ')
         message.value = `They are different SFDC accounts! Account IDs: ${accountIds}`
