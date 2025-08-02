@@ -78,6 +78,8 @@ export default {
           const pathSegments = urlObj.pathname.split('/')
           
           // "001"で始まる要素を抽出
+          // アカウント ID のプレフィックスは 001
+          // https://help.salesforce.com/s/articleView?id=000385203&type=1
           pathSegments.forEach(segment => {
             if (segment.startsWith('001')) {
               ids.add(segment)
