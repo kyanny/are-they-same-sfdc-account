@@ -1,4 +1,4 @@
-# SFDC Account Checker
+# SFDC (Salesforce.com) Account Checker
 
 Vue 3とViteを使用したSalesforceアカウントIDチェッカーです。
 

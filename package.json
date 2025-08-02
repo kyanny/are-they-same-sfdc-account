@@ -1,7 +1,7 @@
 {
   "name": "are-they-same-sfdc-account",
   "version": "1.0.0",
-  "description": "SFDC Account Checker - Check if Salesforce account IDs are the same",
+  "description": "SFDC (Salesforce.com) Account Checker - Check if Salesforce account IDs are the same",
   "main": "index.js",
   "scripts": {
     "dev": "vite",

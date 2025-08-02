@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>SFDC Account Checker</h1>
+    <h1>SFDC (Salesforce.com) Account Checker</h1>
     <p>Enter URLs to check if Salesforce account IDs are the same</p>
     
     <div class="form-container">
